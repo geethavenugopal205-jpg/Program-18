@@ -1,0 +1,24 @@
+class Solution:
+    def peakElement(self, arr):
+        n = len(arr)
+        
+        # Binary search range
+        low = 0
+        high = n - 1
+        
+        while low < high:
+            mid = low + (high - low) // 2
+            
+            # Compare middle element with its right neighbor
+            if arr[mid] < arr[mid + 1]:
+                # We are on an upward slope. 
+                # The peak must be to the right (excluding mid).
+                low = mid + 1
+            else:
+                # We are on a downward slope or at a peak.
+                # The peak is to the left (including mid).
+                high = mid
+                
+        # low and high converge to a peak element index
+        return low
+        
